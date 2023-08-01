@@ -24,3 +24,4 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
       - run: |
           echo ${{ secrets.TELL_ME_WHO_ARE_YOU }}
+          echo ${{ github.event.pull_request.head.sha }}
