@@ -30,7 +30,7 @@ jobs:
         with:
           ref: "refs/pull/${{ github.event.number }}/merge"
       - name: Security - check SHA
-        if: github.event_name == 'pull_request_target'
+        if: ${{ github.event_name == 'pull_request_target' }}
         run: [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
         run: |
