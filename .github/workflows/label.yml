@@ -1,13 +1,14 @@
-name: Tell me who are you!
+name: Target test
 
 on:
   workflow_dispatch:
   pull_request_target:
     branches: [ main ]
+    types: [ opened, synchronize, reopened, labeled ]
 
 jobs:
   test:
-    if: contains(github.event.pull_request.labels.*.name, 'run-test') || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
+    if: (github.event.action == 'labeled' && github.event.label.name == 'run-test')) || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout on branch
