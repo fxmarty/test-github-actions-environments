@@ -27,7 +27,7 @@ jobs:
         run: |
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
-      - run: |
+        run: |
           echo "running!"
           echo ${{ secrets.TELL_ME_WHO_ARE_YOU }}
           echo ${{ github.event.pull_request.head.sha }}
