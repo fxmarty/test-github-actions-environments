@@ -6,17 +6,8 @@ on:
     branches: [ main ]
 
 jobs:
-  authorize:
-    environment:
-      ${{ github.event_name == 'pull_request_target' &&
-      github.event.pull_request.head.repo.full_name != github.repository &&
-      'external' || 'internal' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: true
-
   test:
-    needs: authorize
+    if: contains(github.event.pull_request.labels.*.name, 'run-test') || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout on branch
@@ -28,12 +19,7 @@ jobs:
         if: github.event_name == 'pull_request_target'
         uses: actions/checkout@v2
         with:
-          ref: "refs/pull/${{ github.event.number }}/merge"
-          fetch-depth: 2
-      - name: Security - check SHA
-        if: github.event_name == 'pull_request_target'
-        run: |
-            [[ "$(git rev-parse 'HEAD^2')" == "${{ github.event.pull_request.head.sha }}" ]]
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
       - name: My test
         run: |
           echo "running!"
