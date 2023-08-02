@@ -32,6 +32,7 @@ jobs:
       - name: Security - check SHA
         if: ${{ github.event_name == 'pull_request_target' }}
         run: |
+            git log
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
         run: |
