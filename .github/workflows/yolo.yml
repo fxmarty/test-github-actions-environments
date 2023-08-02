@@ -34,6 +34,8 @@ jobs:
         if: ${{ github.event_name == 'pull_request_target' }}
         run: |
             git log
+            echo "rev-parse head $(git rev-parse 'HEAD^')"
+            echo "pull_request.head.sha ${{ github.event.pull_request.head.sha }}"
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
         run: |
