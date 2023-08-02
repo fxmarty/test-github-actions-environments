@@ -19,12 +19,14 @@ jobs:
     needs: authorize
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ refs/pull/${{ github.event.number }}/merge || github.ref }}
       - name: Security: check branch SHA
         run: |
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
+      - name: My test
       - run: |
           echo "running!"
           echo ${{ secrets.TELL_ME_WHO_ARE_YOU }}
