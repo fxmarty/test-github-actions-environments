@@ -24,6 +24,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: Security - check branch SHA
+        if: github.event_name == 'pull_request_target'
         run: |
             echo ${{ github.ref }}
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
