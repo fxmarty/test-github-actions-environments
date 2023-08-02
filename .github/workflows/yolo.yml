@@ -23,7 +23,7 @@ jobs:
         if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v2
         with:
-          ref: $$ {{ github.ref }}
+          ref: ${{ github.ref }}
       - name: Checkout on PR merge commit
         if: github.event_name == 'pull_request_target'
         uses: actions/checkout@v2
