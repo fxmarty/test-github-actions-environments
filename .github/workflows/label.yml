@@ -7,9 +7,14 @@ on:
     types: [ opened, synchronize, reopened, labeled ]
 
 jobs:
-  if: (github.event.action == 'labeled' && github.event.label.name == 'run-test') || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
+  authorize:
+    if: (github.event.action == 'labeled' && github.event.label.name == 'run-test') || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
 
   test:
+    needs: authorize
     runs-on: ubuntu-latest
     steps:
       - name: Checkout on branch
