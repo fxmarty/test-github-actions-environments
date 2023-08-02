@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    if: (github.event.action == 'labeled' && github.event.label.name == 'run-test')) || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
+    if: (github.event.action == 'labeled' && github.event.label.name == 'run-test') || github.event_name != 'pull_request_target' || (! github.event.pull_request.head.repo.fork)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout on branch
