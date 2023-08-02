@@ -19,12 +19,16 @@ jobs:
     needs: authorize
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout on branch
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v2
+        with:
+          ref: $$ {{ github.ref }}
+      - name: Checkout on PR merge commit
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v2
         with:
           ref: "refs/pull/${{ github.event.number }}/merge"
-      - name: Security - check branch SHA
-        if: github.event_name == 'pull_request_target'
         run: |
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
