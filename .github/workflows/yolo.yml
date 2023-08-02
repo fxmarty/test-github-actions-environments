@@ -22,11 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
+          ref: "refs/pull/${{ github.event.number }}/merge"
       - name: Security - check branch SHA
         if: github.event_name == 'pull_request_target'
         run: |
-            echo ${{ github.ref }}
             [[ "$(git rev-parse 'HEAD^')" == "${{ github.event.pull_request.head.sha }}" ]]
       - name: My test
         run: |
