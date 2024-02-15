@@ -22,14 +22,18 @@ jobs:
         run: |
           df -h
           sudo apt-get update
-          sudo apt-get remove -y '^apache.*'
-          sudo apt-get remove -y '^imagemagick.*'
-          sudo apt-get remove -y '^dotnet.*'
-          sudo apt-get remove -y '^aspnetcore.*'
-          sudo apt-get remove -y 'php.*'
-          sudo apt-get remove -y '^temurin.*'
-          sudo apt-get remove -y '^mysql.*'
-          sudo apt-get remove -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
+          sudo apt-get purge --pu -y '^apache.*'
+          sudo apt-get purge -y '^imagemagick.*'
+          sudo apt-get purge -y '^dotnet.*'
+          sudo apt-get purge -y '^aspnetcore.*'
+          sudo apt-get purge -y 'php.*'
+          sudo apt-get purge -y '^temurin.*'
+          sudo apt-get purge -y '^mysql.*'
+          sudo apt-get purge -y '^java.*'
+          sudo apt-get purge -y '^jvm.*'
+          sudo apt-get purge -y '^haskell.*'
+          sudo apt-get purge -y '^ghcup.*'
+          sudo apt-get purge -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
           df -h
           sudo apt-get autoremove -y >/dev/null 2>&1
           sudo apt-get clean
@@ -41,9 +45,21 @@ jobs:
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf /usr/local/lib/android >/dev/null 2>&1
           df -h
+          echo "remove /usr/share leftovers"
           sudo rm -rf /usr/share/dotnet/sdk > /dev/null 2>&1
           sudo rm -rf /usr/share/dotnet/shared > /dev/null 2>&1
           sudo rm -rf /usr/share/swift > /dev/null 2>&1
           df -h
+          echo "remove /usr/share leftovers"
+          sudo rm -rf /var/lib/mysql > /dev/null 2>&1
+          sudo rm -rf /home/runner/.dotnet > /dev/null 2>&1
+          sudo rm -rf /home/runneradmin/.dotnet > /dev/null 2>&1
+          sudo rm -rf /etc/skel/.dotnet > /dev/null 2>&1
+          df -h
           echo "print du"
-          sudo du --max-depth=4 --exclude=/proc/* --exclude=/run/* /* | sort -nr
+          sudo du -m --max-depth=4 --exclude=/proc/* --exclude=/run/* /* | sort -nr
+          echo "packages"
+          sudo apt-get update
+          sudo apt-get install -y wajig
+          sudo wajig large
+
