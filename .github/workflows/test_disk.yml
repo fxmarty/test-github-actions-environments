@@ -31,8 +31,6 @@ jobs:
           sudo apt-get purge -y '^mysql.*'
           sudo apt-get purge -y '^java.*'
           sudo apt-get purge -y '^openjdk.*'
-          sudo apt-get purge -y '^haskell.*'
-          sudo apt-get purge -y '^ghcup.*'
           sudo apt-get purge -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
           df -h
           sudo apt-get autoremove -y >/dev/null 2>&1
@@ -55,6 +53,8 @@ jobs:
           sudo rm -rf /home/runner/.dotnet > /dev/null 2>&1
           sudo rm -rf /home/runneradmin/.dotnet > /dev/null 2>&1
           sudo rm -rf /etc/skel/.dotnet > /dev/null 2>&1
+          sudo rm -rf /usr/local/.ghcup > /dev/null 2>&1
+          sudo rm -rf /usr/local/aws-cli > /dev/null 2>&1
           df -h
           echo "print du"
           sudo du -m --max-depth=4 --exclude=/proc/* --exclude=/run/* /* | sort -nr
