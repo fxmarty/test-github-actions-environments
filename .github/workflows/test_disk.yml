@@ -21,6 +21,7 @@ jobs:
       - name: Free disk space
         run: |
           df -h
+          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
           sudo apt-get update
           sudo apt-get remove -y '^dotnet.*'
           sudo apt-get remove -y '^aspnetcore.*'
