@@ -30,7 +30,7 @@ jobs:
           sudo apt-get purge -y '^temurin.*'
           sudo apt-get purge -y '^mysql.*'
           sudo apt-get purge -y '^java.*'
-          sudo apt-get purge -y '^jvm.*'
+          sudo apt-get purge -y '^openjdk.*'
           sudo apt-get purge -y '^haskell.*'
           sudo apt-get purge -y '^ghcup.*'
           sudo apt-get purge -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
