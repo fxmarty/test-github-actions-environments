@@ -24,8 +24,9 @@ jobs:
           echo "test"
           apt-cache rdepends aspnetcore-runtime-6.0
           echo "Removing large packages"
-          sudo apt-get remove -y '^dotnet-.*'
-          sudo apt-get remove -y 'php.*'
+          sudo apt-get remove -y dotnet-sdk-6.0 --no-install-recommends
+          sudo apt-get remove -y '^dotnet-.*' --no-install-recommends
+          sudo apt-get remove -y 'php.*' --no-install-recommends
           sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel
           df -h
           sudo apt-get autoremove -y >/dev/null 2>&1
