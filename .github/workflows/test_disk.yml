@@ -29,7 +29,7 @@ jobs:
           sudo apt-get remove -y '^aspnetcore.*'
           sudo apt-get remove -y 'php.*'
           sudo apt-get remove -y '^temurin.*'
-          udo apt-get remove -y '^mysql.*'
+          sudo apt-get remove -y '^mysql.*'
           sudo apt-get remove -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
           sudo wajig large
           df -h
