@@ -29,6 +29,8 @@ jobs:
           echo "Removing large packages"
           sudo apt-get remove -y dotnet-sdk-6.0 --no-install-recommends
           sudo apt-get remove -y '^dotnet-.*' --no-install-recommends
+          echo "aspnetcore-targeting-pack-6.0 depending"
+          apt-cache rdepends aspnetcore-targeting-pack-6.0
           sudo apt-get remove -y 'php.*' --no-install-recommends
           sudo apt-get remove -y azure-cli google-chrome-stable firefox powershell mono-devel
           df -h
