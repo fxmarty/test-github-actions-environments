@@ -46,4 +46,4 @@ jobs:
           sudo rm -rf /usr/share/swift > /dev/null 2>&1
           df -h
           echo "print du"
-          sudo du --max-depth=3 --exclude=/proc/* --exclude=/run/* /*
+          sudo du --max-depth=4 --exclude=/proc/* --exclude=/run/* /* | sort -nr
