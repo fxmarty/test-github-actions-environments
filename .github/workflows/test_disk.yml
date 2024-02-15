@@ -21,6 +21,7 @@ jobs:
       - name: Free disk space
         run: |
           df -h
+          sudo apt-get update
           echo "test"
           apt-cache rdepends aspnetcore-runtime-6.0
           echo "depends?"
