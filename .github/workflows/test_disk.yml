@@ -22,7 +22,7 @@ jobs:
         run: |
           df -h
           sudo apt-get update
-          sudo apt-get purge --pu -y '^apache.*'
+          sudo apt-get purge -y '^apache.*'
           sudo apt-get purge -y '^imagemagick.*'
           sudo apt-get purge -y '^dotnet.*'
           sudo apt-get purge -y '^aspnetcore.*'
