@@ -22,7 +22,6 @@ jobs:
         run: |
           df -h
           sudo apt-get update
-          sudo apt-get install -y wajig
           sudo apt-get remove -y '^apache.*'
           sudo apt-get remove -y '^imagemagick.*'
           sudo apt-get remove -y '^dotnet.*'
@@ -31,7 +30,6 @@ jobs:
           sudo apt-get remove -y '^temurin.*'
           sudo apt-get remove -y '^mysql.*'
           sudo apt-get remove -y microsoft-edge-stable google-cloud-cli azure-cli google-chrome-stable firefox powershell mono-devel
-          sudo wajig large
           df -h
           sudo apt-get autoremove -y >/dev/null 2>&1
           sudo apt-get clean
@@ -47,3 +45,5 @@ jobs:
           sudo rm -rf /usr/share/dotnet/shared > /dev/null 2>&1
           sudo rm -rf /usr/share/swift > /dev/null 2>&1
           df -h
+          echo "print du"
+          sudo du --max-depth=3 --exclude=/proc/* --exclude=/run/* /*
